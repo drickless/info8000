@@ -6,7 +6,27 @@ Description: Exploratory visualization of survey results
 
 Questions:
 
-Q1. What is the distribution of demographic characteristics of the respondents?
+Q1. Where are the respondents?
+```{r}
+#maps
+library(maptools)
+library(ggmap)
+#read shapefile
+pts <- readShapePoints("/Volumes/SANDISK/CoastSurvey/Geo/sgeoCh_wgs.shp")
+#load basemap
+mapImage <- get_map(location = c(lon = -81.09, lat = 32.08),
+                    color = "color",
+                    maptype = "terrain",
+                    source = "google",
+                    zoom = 10)
+#convert shp to ggplot-friendly data frame
+pts_fr <- data.frame(pts)
+#plot points on map
+ggmap(mapImage) +
+  geom_point(data = pts_fr, aes(x = long, y = lat))
+```
+
+Q2. What is the distribution of demographic characteristics of the respondents?
     Income, Ethnicity, and Education variables visualized as bar graphs:
 ```{r}
 library(tidyverse)
@@ -31,13 +51,8 @@ a +
   labs(x = "Educational Attainment")
 ```
 
-Q2. Do respondents in high-risk flood zones express greater concern about severe storms?
-
 Q3. Do income, race, or ethnicity relate to how respondents perceive their ability to recover from storms?
-    Less educated and lower income individuals, and members of minority communities are theorized to be 
-    less able to recover from the impacts of severe storms. These graphs break down respondents perceived ability
-    to recover from storm damage based on these variables. The results are represented as stacked bar graphs and as
-    boxplots.
+    Less educated and lower income individuals, and members of minority communities are         theorized to be less able to recover from the impacts of severe storms. These graphs        break down respondents perceived ability to recover from storm damage based on these        variables. The results are represented as stacked bar graphs and as boxplots.
 
 ```{r}
   #by ethnicity

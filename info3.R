@@ -1,5 +1,6 @@
 library(tidyverse)
-sgeo <- read.csv("~/Desktop/sgeoTable.csv")
+#sgeo <- read.csv("~/Desktop/sgeoTable.csv")
+sgeo <- read.csv("/Volumes/SANDISK/CoastSurvey/sgeoTable.csv")
 a <- ggplot(data = sgeo)
 
 #summary of three demographic variables
@@ -60,3 +61,22 @@ a +
 #Compare demographics with concern about storms
 a +
   geom_smooth(mapping = aes(SSDPers, savannnahDEM))
+
+
+#maps
+library(maptools)
+library(ggmap)
+
+pts <- readShapePoints("/Volumes/SANDISK/CoastSurvey/Geo/sgeoCh_wgs.shp")
+#ggmap image
+mapImage <- get_map(location = c(lon = -81.09, lat = 32.08),
+                    color = "color",
+                    maptype = "terrain",
+                    source = "google",
+                    zoom = 10)
+#convert to ggplot-friendly data frame
+pts_fr <- data.frame(pts)
+#plot points on map
+ggmap(mapImage) +
+  geom_point(data = pts_fr, aes(x = long, y = lat))
+
