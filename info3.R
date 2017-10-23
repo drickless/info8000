@@ -66,15 +66,15 @@ a +
 #maps
 library(maptools)
 library(ggmap)
-
+#read shp
 pts <- readShapePoints("/Volumes/SANDISK/CoastSurvey/Geo/sgeoCh_wgs.shp")
-#ggmap image
+#load basemap
 mapImage <- get_map(location = c(lon = -81.09, lat = 32.08),
                     color = "color",
                     maptype = "terrain",
                     source = "google",
                     zoom = 10)
-#convert to ggplot-friendly data frame
+#convert shp to ggplot-friendly data frame
 pts_fr <- data.frame(pts)
 #plot points on map
 ggmap(mapImage) +
