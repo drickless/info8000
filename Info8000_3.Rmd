@@ -8,14 +8,14 @@ Questions:
 
 Q1. Where are the respondents?
 ```{r}
+
 #maps
 library(maptools)
 library(ggmap)
-#read shapefile
+#read shp
 pts <- readShapePoints("/Volumes/SANDISK/CoastSurvey/Geo/sgeoCh_wgs.shp")
 #load basemap
 mapImage <- get_map(location = c(lon = -81.09, lat = 32.08),
-                    color = "color",
                     maptype = "terrain",
                     source = "google",
                     zoom = 10)
@@ -26,10 +26,12 @@ ggmap(mapImage) +
   geom_point(data = pts_fr, aes(x = long, y = lat))
 ```
 
+
 Q2. What is the distribution of demographic characteristics of the respondents?
     Income, Ethnicity, and Education variables visualized as bar graphs:
 ```{r}
 library(tidyverse)
+#sgeo <- read.csv("~/Desktop/sgeoTable.csv")
 sgeo <- read.csv("~/Desktop/sgeoTable.csv")
 a <- ggplot(data = sgeo)
 
