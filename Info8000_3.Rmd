@@ -1,12 +1,14 @@
 ---
 title: "Info8000 Assignment 3"
-output: html_document
+output:
+  html_document: default
 ---
 Description: Exploratory visualization of survey results
 
 Questions:
 
 Q1. Where are the respondents?
+    This snippet reads a shapefile containing the data points, translates it to a dataframe, and       plots the points on a Google map of the study area.
 ```{r}
 
 #maps
@@ -25,7 +27,9 @@ pts_fr <- data.frame(pts)
 ggmap(mapImage) +
   geom_point(data = pts_fr, aes(x = long, y = lat))
 ```
-
+As can be seen in the map, this subset of respondents were all located within Chatham County,
+GA. They were spread throughout the county, with clusters near the center of Savannah. Both 
+inland and coastal communities are represented. 
 
 Q2. What is the distribution of demographic characteristics of the respondents?
     Income, Ethnicity, and Education variables visualized as bar graphs:
@@ -52,9 +56,10 @@ a +
                    labels = c("Did not finish HS","HS/GED","Some college","Assoc","Bachelors","Some grad","Grad degree")) +
   labs(x = "Educational Attainment")
 ```
+Before beginning analysis of the responses, it is helpful to assess the demographic makeup of the participants. Income is bimodally distributed, with many respondents falling into low and middle income categories, as expected. Like the study area as a whole, the sample is  majority white with a significant African American minority and a smaller Hispanic minority. Other ethnic identiteis were not well represented. Finally, the educational makeup of the sample is fairly diverse; many respondents have post-high school education. 
 
 Q3. Do income, race, or ethnicity relate to how respondents perceive their ability to recover from storms?
-    Less educated and lower income individuals, and members of minority communities are         theorized to be less able to recover from the impacts of severe storms. These graphs        break down respondents perceived ability to recover from storm damage based on these        variables. The results are represented as stacked bar graphs and as boxplots.
+    Less educated and lower income individuals, and members of minority communities are         theorized to be less able to recover from the impacts of severe storms. These graphs break down respondents perceived ability to recover from storm damage based on these variables. The results are represented as stacked bar graphs and as boxplots. Higher values indicate greater ability to recover as indicated on the survey. 
 
 ```{r}
   #by ethnicity
@@ -95,4 +100,4 @@ a +
   labs(x = "Educational Attainment", y = "Ability to recover")
 ```
 
-
+Whites and African Americans reported similar abilies to recovery, but the values for Hispanics were consistently lower. The other groups were simlar to White and African American, but these made up a very small proportion of the respondents, as noted above, so the results must be taken with some caution. Respondents with incomes above $75,000 reported greater ability to recover on average--this is not surprising. Education did not exhibit much variation; interestingly, however, respondents with less than a high school degree were more confident that they could recover from storm impacts. 

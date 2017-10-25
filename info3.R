@@ -1,6 +1,8 @@
 library(tidyverse)
-sgeo <- read.csv("~/Desktop/sgeoTable.csv")
-#sgeo <- read.csv("/Volumes/SANDISK/CoastSurvey/sgeoTable.csv")
+
+#setwd("~/Desktop")
+setwd("/Volumes/SANDISK/CoastSurvey")
+sgeo <- read.csv("sgeoTable.csv")
 a <- ggplot(data = sgeo)
 
 #summary of three demographic variables
@@ -67,7 +69,7 @@ a +
 library(maptools)
 library(ggmap)
 #read shp
-pts <- readShapePoints("/Volumes/SANDISK/CoastSurvey/Geo/sgeoCh_wgs.shp")
+pts <- readShapePoints("sgeoCh_wgs.shp")
 #load basemap
 mapImage <- get_map(location = c(lon = -81.09, lat = 32.08),
                     maptype = "terrain",
