@@ -15,7 +15,7 @@ Q1. Where are the respondents?
 library(maptools)
 library(ggmap)
 #read shp
-pts <- readShapePoints("/Volumes/SANDISK/CoastSurvey/Geo/sgeoCh_wgs.shp")
+pts <- readShapePoints("sgeoCh_wgs.shp")
 #load basemap
 mapImage <- get_map(location = c(lon = -81.09, lat = 32.08),
                     maptype = "terrain",
@@ -35,8 +35,7 @@ Q2. What is the distribution of demographic characteristics of the respondents?
     Income, Ethnicity, and Education variables visualized as bar graphs:
 ```{r}
 library(tidyverse)
-#sgeo <- read.csv("~/Desktop/sgeoTable.csv")
-sgeo <- read.csv("~/Desktop/sgeoTable.csv")
+sgeo <- read.csv("sgeoTable.csv")
 a <- ggplot(data = sgeo)
 
 a +
